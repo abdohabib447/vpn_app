@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:vpn_basic_project/app-preference/app_preference.dart';
+import 'package:vpn_basic_project/model/custom_connection_widget.dart';
+import 'package:vpn_basic_project/model/custom_icon.dart';
 
 class HomeView extends StatelessWidget {
   static const String route = 'home';
@@ -26,36 +27,86 @@ class HomeView extends StatelessWidget {
         leading:
             IconButton(onPressed: () {}, icon: Icon(Icons.perm_device_info)),
       ),
-      body: Text('data'),
-      bottomNavigationBar:
-         handleBottumNavigationBar(context),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomIcon(
+                  icon: Icons.location_on,
+                  label: "Location",
+                  value: "FREE",
+                  color: Colors.redAccent,
+                  function: () {}),
+              CustomIcon(
+                  icon: Icons.network_check,
+                  label: "PING",
+                  value: "60 ms",
+                  color: Colors.grey,
+                  function: () {}),
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          CustomConnectionWidget(
+              function: () {}, connectionStatus: 'not connected'),
+          SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomIcon(
+                icon: Icons.arrow_downward,
+                label: "DOWNLOAD",
+                value: "0 kbps",
+                color: Colors.green,
+                function: () {},
+              ),
+              CustomIcon(
+                icon: Icons.arrow_upward,
+                label: "UPLOAD",
+                value: "0 kbps",
+                color: Colors.purple,
+                function: () {},
+              ),
+            ],
+          ),
+        ],
+      ),
+      bottomNavigationBar: handleBottumNavigationBar(context),
     );
   }
 
   handleBottumNavigationBar(BuildContext context) {
-    return InkWell(
-      onTap: (){},
-      child: Container(
-        padding: EdgeInsets.all(6),
-        height: high* 0.1,
-        color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-             CircleAvatar(
-               child: Icon(
-                Icons.flag_circle_outlined,
-                //color: Colors.white,
-                           ),
-             ),
-            Text(
-              'select country/location',
-              style: TextStyle(color: Colors.white),
+    return SafeArea(
+      child: Semantics(
+        button: true,
+        child: InkWell(
+          onTap: () {},
+          child: Container(
+            padding: EdgeInsets.all(6),
+            height: high * 0.1,
+            color: Colors.redAccent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CircleAvatar(
+                  child: Icon(
+                    Icons.flag_circle_outlined,
+                    //color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'select country/location',
+                  style: TextStyle(color: Colors.white),
+                ),
+                CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.keyboard_arrow_right_outlined))
+              ],
             ),
-            CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(Icons.keyboard_arrow_right_outlined))
-          ],
+          ),
         ),
       ),
     );
