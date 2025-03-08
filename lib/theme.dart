@@ -5,7 +5,7 @@ class MyTheme {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       elevation: 3,
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: Colors.redAccent,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.red,
