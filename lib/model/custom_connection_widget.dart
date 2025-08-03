@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class CustomConnectionWidget extends StatelessWidget {
   CustomConnectionWidget(
-      {required this.function, required this.connectionStatus});
+      {required this.function, required this.connectionStatus , required this.color});
   Function function;
   String connectionStatus;
+  Color color;
   Widget build(BuildContext context) {
     return Column(
       children: [
