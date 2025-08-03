@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_basic_project/app-preference/app_preference.dart';
+import 'package:vpn_basic_project/controler/vpn_controler.dart';
 import 'package:vpn_basic_project/model/custom_connection_widget.dart';
 import 'package:vpn_basic_project/model/custom_icon.dart';
 
 class HomeView extends StatelessWidget {
+  final homeController = Get.put(VpnController());
   static const String route = 'home';
   late var high;
   late var width;
@@ -51,7 +53,10 @@ class HomeView extends StatelessWidget {
             height: 30,
           ),
           CustomConnectionWidget(
-              function: () {}, connectionStatus: 'not connected'),
+            function: () {},
+            connectionStatus: homeController.getRoundVpnButtonText,
+            color: homeController.getRoundVpnButtonColor,
+          ),
           SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,11 +79,11 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: handleBottumNavigationBar(context),
+      bottomNavigationBar: handleBottunNavigationBar(context),
     );
   }
 
-  handleBottumNavigationBar(BuildContext context) {
+  handleBottunNavigationBar(BuildContext context) {
     return SafeArea(
       child: Semantics(
         button: true,
@@ -112,28 +117,4 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-// BottomNavigationBar(backgroundColor: Colors.red, items: [
-// BottomNavigationBarItem(
-// label: ' ',
-// icon: IconButton(
-// onPressed: () {},
-// icon: Icon(
-// Icons.flag_circle_outlined,
-// color: Colors.white,
-// ))),
-// BottomNavigationBarItem(
-// label: ' ',
-// icon: TextButton(
-// onPressed: () {},
-// child: Text(
-// 'select country/location',
-// style: TextStyle(color: Colors.white),
-// ))),
-// BottomNavigationBarItem(
-// label: ' ',
-// icon: CircleAvatar(
-// backgroundColor: Colors.white,
-// child: IconButton(
-// onPressed: () {},
-// icon: Icon(Icons.keyboard_arrow_right_outlined))))
-// ]),
+
